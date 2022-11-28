@@ -8,7 +8,7 @@ export const Input = styled.input`
   margin-left: 3px;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 2px solid black;
   ::placeholder {
     color: #000000;
     font-size: 12px;
@@ -21,7 +21,7 @@ export const Input = styled.input`
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 2px solid #e8e8e8;
+    border-bottom: 2px solid #b300ff;;
   }
 `;
 export const AddContactBtn = styled.button`

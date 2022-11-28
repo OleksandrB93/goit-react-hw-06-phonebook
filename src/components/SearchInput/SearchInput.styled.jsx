@@ -8,13 +8,13 @@ export const SearchInputSt = styled.input`
 
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 2px solid black;
   &:hover,
   &:focus {
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 2px solid #e8e8e8;
+    border-bottom: 2px solid #b300ff;;
   }
 
   ::placeholder {
