@@ -1,14 +1,26 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { SearchInputSt } from "./SearchInput.styled";
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from "redux/contactSlise"; 
+import { setFilter } from "redux/contactSlise"; 
 
-export default function SearchInput({ filter, changeFilterInput }) {
+
+export default function SearchInput() {
+  const dispatch = useDispatch();
+  const filter = useSelector(getFilter);
+
+  const onChange = e => {
+    dispatch(setFilter(e.target.value));
+  };
+
   return (
     <div>
       <SearchInputSt
         type="text"
         name={filter}
-        onChange={changeFilterInput}
+        value={filter}
+        onChange={onChange}
         placeholder="Please write name"
       />
     </div>
@@ -16,6 +28,6 @@ export default function SearchInput({ filter, changeFilterInput }) {
 }
 
 SearchInput.propTypes = {
-  filter: PropTypes.string.isRequired,
-  changeFilterInput: PropTypes.func.isRequired,
+  filter: PropTypes.string,
+  changeFilterInput: PropTypes.func,
 };

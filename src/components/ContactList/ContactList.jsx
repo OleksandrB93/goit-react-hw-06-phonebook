@@ -3,11 +3,27 @@ import React from "react";
 import { DeleteBtn, List, Item, UserInfo, Avatar } from "./ContactLIst.styled";
 import { HiOutlineTrash } from "react-icons/hi";
 
+import { useDispatch, useSelector } from "react-redux";
+import { deleteContact } from "redux/contactSlise";
+import { getContacts, getFilter } from "redux/contactSlise";
 
-export default function ContactList({ contacts, deleteContact }) {
+export default function ContactList() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const filtered = useSelector(getFilter);
+
+  const findContacts = () => {
+    const normalizedFilter = filtered.toLowerCase();
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  const filteredContacts = findContacts();
+
   return (
     <List>
-      {contacts.map(
+      {filteredContacts.map(
         ({
           id,
           name,
@@ -20,7 +36,10 @@ export default function ContactList({ contacts, deleteContact }) {
               <UserInfo>
                 {name}: {phoneNumber}
               </UserInfo>
-              <DeleteBtn type="button" onClick={() => deleteContact(id)}>
+              <DeleteBtn
+                type="button"
+                onClick={() => dispatch(deleteContact(id))}
+              >
                 <HiOutlineTrash />
               </DeleteBtn>
             </Item>
@@ -39,5 +58,5 @@ ContactList.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ),
-  deleteContact: PropTypes.func.isRequired,
+  deleteContact: PropTypes.func,
 };

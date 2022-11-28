@@ -3,8 +3,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { HiUserAdd } from "react-icons/hi";
 import { NameLabel, AddContactBtn, Input } from "./Phonebook.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "redux/contactSlise";
+import { getContacts } from "redux/contactSlise";
 
-export default function Phonebook({ onSubmit }) {
+export default function Phonebook() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [img, setImg] = useState(
@@ -13,6 +16,9 @@ export default function Phonebook({ onSubmit }) {
 
   const nameInputId = nanoid();
   const phoneNumberInputId = nanoid();
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -33,8 +39,20 @@ export default function Phonebook({ onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const contact = {
+      name,
+      phoneNumber,
+      id: nanoid(),
+    };
 
-    onSubmit(name, phoneNumber);
+    const checkContact = contacts.some(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    checkContact
+      ? alert(`${name} is already in contact`)
+      : dispatch(addContact(contact));
+
     resetSubmit();
   };
 
