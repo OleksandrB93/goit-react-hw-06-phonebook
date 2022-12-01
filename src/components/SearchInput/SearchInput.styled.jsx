@@ -14,7 +14,7 @@ export const SearchInputSt = styled.input`
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 2px solid #b300ff;;
+    border-bottom: 2px solid #ac4a75ae;
   }
 
   ::placeholder {

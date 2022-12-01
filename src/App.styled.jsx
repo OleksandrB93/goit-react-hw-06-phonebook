@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
   margin-top: 80px;
   padding: 30px;
   border-radius: 7px;
-  background-color: #fbfbfb30;
+  background-color: #fbfbfb7e;
   box-shadow: rgb(180, 145, 184) 0px 22px 70px 4px,
   #5f758f 0px 0px 6px 0px inset;
 `;
